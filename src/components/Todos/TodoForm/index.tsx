@@ -1,10 +1,11 @@
 import { useState } from 'react';
+import type { FormEventHandler } from 'react';
 import styles from './style.module.scss';
 
 function TodoForm({ addTodo }: { addTodo: (text: string) => void }) {
   const [text, setText] = useState<string>('');
 
-  const onSubmitHandler = (event: { preventDefault: () => void }) => {
+  const onSubmitHandler: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     addTodo(text);
     setText('');

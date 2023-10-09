@@ -1,8 +1,8 @@
 import styles from './style.module.scss';
 
-function Todo({ todo }: { todo: string }) {
+function Todo({ todo, deleteTodo }: { todo: string; deleteTodo: () => void }) {
   return (
-    <div className={styles.todo}>
+    <div className={styles.todo} onDoubleClick={deleteTodo}>
       <div className={styles.todoText}> {todo}</div>
     </div>
   );
