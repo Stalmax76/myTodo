@@ -1,20 +1,33 @@
 import Todo from '../Todo/index.tsx';
 import styles from './style.module.scss';
 
+interface ITodo {
+  text: string;
+  id: string;
+  isCompleted: boolean;
+}
+
 function TodoList({
   todos,
   deleteTodo,
+  toggleTodo,
 }: {
-  todos: string[];
-  deleteTodo: (index: number) => void;
+  todos: ITodo[];
+  deleteTodo: (id: string) => void;
+  toggleTodo: (id: string) => void;
 }) {
   return (
     <div className={styles.todoList}>
       {!todos.length ? (
         <h3> Todo list is empty </h3>
       ) : (
-        todos.map((todo, index) => (
-          <Todo todo={todo} key={index} deleteTodo={() => deleteTodo(index)} />
+        todos.map((todo) => (
+          <Todo
+            todo={todo}
+            key={todo.id}
+            deleteTodo={() => deleteTodo(todo.id)}
+            toggleTodo={() => toggleTodo(todo.id)}
+          />
         ))
       )}
     </div>
