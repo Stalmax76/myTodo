@@ -1,11 +1,6 @@
 import Todo from '../Todo/index.tsx';
 import styles from './style.module.scss';
-
-interface ITodo {
-  text: string;
-  id: string;
-  isCompleted: boolean;
-}
+import { ITodo } from '@types';
 
 function TodoList({
   todos,

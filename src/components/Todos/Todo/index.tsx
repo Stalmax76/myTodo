@@ -1,12 +1,7 @@
 import { RiTodoFill, RiDeleteBin2Line } from 'react-icons/ri';
 import { FaCheck } from 'react-icons/fa';
+import type { ITodo } from '@types';
 import styles from './style.module.scss';
-
-interface ITodo {
-  text: string;
-  id: string;
-  isCompleted: boolean;
-}
 
 function Todo({
   todo,

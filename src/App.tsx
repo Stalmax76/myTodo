@@ -3,13 +3,9 @@ import { v4 as uuidv4 } from 'uuid';
 import TodoForm from './components/Todos/TodoForm';
 import TodoList from './components/Todos/TodoList';
 import TodoActions from './components/Todos/TodosActions';
+import { type ITodo } from '@types';
 import './App.css';
 
-interface ITodo {
-  text: string;
-  id: string;
-  isCompleted: boolean;
-}
 function App() {
   const [todos, setTodos] = useState<ITodo[]>([]);
 
@@ -19,8 +15,7 @@ function App() {
       isCompleted: false,
       id: uuidv4(),
     };
-
-    setTodos([...todos, newTodo]);
+    if (text) setTodos([...todos, newTodo]);
   };
   const deleteTodoHandler = (id: string): void => {
     setTodos(todos.filter((todo) => todo.id !== id));
@@ -29,9 +24,7 @@ function App() {
   const toggleTodoHandler = (id: string): void => {
     setTodos(
       todos.map((todo) =>
-        todo.id === id
-          ? { ...todo, isCompleted: !todo.isCompleted }
-          : { ...todo }
+        todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : { ...todo }
       )
     );
   };
@@ -58,11 +51,7 @@ function App() {
         />
       )}
 
-      <TodoList
-        todos={todos}
-        deleteTodo={deleteTodoHandler}
-        toggleTodo={toggleTodoHandler}
-      />
+      <TodoList todos={todos} deleteTodo={deleteTodoHandler} toggleTodo={toggleTodoHandler} />
       {completedTodosCount > 0 && (
         <h2>{`You have completed ${completedTodosCount} ${
           completedTodosCount > 1 ? 'todos' : 'todo'

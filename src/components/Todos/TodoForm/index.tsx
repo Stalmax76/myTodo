@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { FormEventHandler } from 'react';
-import Button from '../../UI/Button';
+import Button from '@components/UI/Button';
 import styles from './style.module.scss';
 
 function TodoForm({ addTodo }: { addTodo: (text: string) => void }) {
